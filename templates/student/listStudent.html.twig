@@ -1,0 +1,44 @@
+<h4 >List Student </h4>
+
+
+<table border="2">
+    <tr>
+    <th>
+        nce
+    </th>
+    <th>
+        username
+    </th>
+    <th>
+        moyenne
+    </th>
+    </tr>
+     {% for i in tab_student %}
+  <tr>
+     <td>
+         {{i.nce}}
+     </td>
+     <td>
+         {{i.username}}
+     </td>
+
+     <td>
+         {{i.moyenne}}
+     </td>
+
+
+     <td>
+         <a href="{{ path('Update_Student',{'nce':i.nce}) }}">Update</a>
+
+
+     </td>
+     <td>
+
+         <a href="{{ path('Delete_Student',{'nce':i.nce}) }}">Delete</a>
+
+
+     </td>
+    </tr>
+    {%endfor %}
+
+</table>
