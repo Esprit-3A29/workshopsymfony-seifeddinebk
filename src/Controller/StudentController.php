@@ -49,12 +49,31 @@ class StudentController extends AbstractController
             $em->flush();
             return $this->redirecttoroute('list_student');
         }
-        return $this->render('classroom/AddClassroom.html.twig', [
+        return $this->render('student/AddStudent.html.twig', [
             'Form' => $form->createView(),
 
         ]);
 
        }
+       #[Route('/AddStudent2', name: 'Add_Student2')]
+       public function AddStudent2(StudentRepository $repository, Request $request ,ManagerRegistry $doctrine ): Response
+       {
+           $Student = new Student();
+   
+           $form = $this->createForm(AddStudentType::class, $Student);
+           
+           $form->handleRequest($request);
+           if ($form->isSubmitted() && $form->isValid()) {
+                $repository ->add($Student,TRUE);
+                return $this->redirectToRoute('list_student');
+           }
+           return $this->render('student/AddStudent.html.twig', [
+               'Form' => $form->createView(),
+   
+           ]);
+   
+          }
+   
 
 
        #[Route('/UpdateStudent/{nce}', name: 'Update_Student')]
