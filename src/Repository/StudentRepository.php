@@ -63,4 +63,22 @@ class StudentRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function GetStudentByClassroom($id)
+    {
+        $qb= $this->createQueryBuilder('s')
+        ->join('s.classroom','c')
+        ->addselect('c')
+        ->where('c.id=:id')
+        ->setParameter('id',$id);
+        return $qb->getQuery()
+        ->getResult();
+    }
+    public function GetTopStudents(){
+        $entityManger=$this->getEntityManager();
+        $query=$entityManger
+        ->createQuery("SELECT s FROM APP\Entity\Student s
+        WHERE s.moyenne>=15");
+        return $query->getResult();
+    }
 }

@@ -1,0 +1,16 @@
+id:{{Classroom.id}}
+name:{{Classroom.name}}
+<h3>List students<h3>
+{% for  s in tabStudents %}
+nce: {{ s.nce }}
+username: {{ s.username }}
+moyenne: {{ s.moyenne }}
+    <br>
+{% endfor %}
+<h3>Top students<h3>
+{% for  s in topStudents %}
+nce: {{ s.nce }}
+username: {{ s.username }}
+moyenne: {{ s.moyenne }}
+    <br>
+{% endfor %}
